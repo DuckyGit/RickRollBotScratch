@@ -3,7 +3,6 @@ const fs = require("fs/promises")
 
 const client = new Scratch.User()
 const users = require("./users.json")
-const config = require("./config.json")
 
 let truth = require("./truth.json")
 
@@ -19,7 +18,7 @@ const messages = [
 ]
 
 const main = async () => {
-    await client.login(config.username, config.password)
+    await client.login(process.env.username, process.env.password)
     const messages = await client.messages.getCount()
 
     console.log(`I have ${JSON.parse(messages.body).count} unread messages`)
