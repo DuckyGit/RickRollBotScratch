@@ -1,5 +1,4 @@
 const Scratch = require("scratch-site-api")
-const fs = require("fs/promises")
 
 const client = new Scratch.User()
 const users = require("./users.json")
@@ -32,8 +31,6 @@ const comment = async (user) => {
     truth++
     await client.profile.setStatus(`${truth} people are memers.`)
     console.log(`Commented on ${user}`)
-    fs.appendFile("./log.txt", `[${new Date().toISOString()}] Commented on ${user} with comment ${message}\n`)
-    fs.writeFile("./truth.json", JSON.stringify(truth))
     setTimeout(() => {
         comment(users[Math.floor(Math.random() * users.length)])
     }, (60000) + (Math.random() * 2) * 60000)
